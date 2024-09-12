@@ -1,0 +1,29 @@
+/zea_turtle
+  Subscribers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /turtle1/cmd_vel: geometry_msgs/msg/Twist
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /turtle1/color_sensor: turtlesim/msg/Color
+    /turtle1/pose: turtlesim/msg/Pose
+  Service Servers:
+    /clear: std_srvs/srv/Empty
+    /kill: turtlesim/srv/Kill
+    /reset: std_srvs/srv/Empty
+    /spawn: turtlesim/srv/Spawn
+    /turtle1/set_pen: turtlesim/srv/SetPen
+    /turtle1/teleport_absolute: turtlesim/srv/TeleportAbsolute
+    /turtle1/teleport_relative: turtlesim/srv/TeleportRelative
+    /zea_turtle/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /zea_turtle/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /zea_turtle/get_parameters: rcl_interfaces/srv/GetParameters
+    /zea_turtle/list_parameters: rcl_interfaces/srv/ListParameters
+    /zea_turtle/set_parameters: rcl_interfaces/srv/SetParameters
+    /zea_turtle/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+  Action Clients:
+
