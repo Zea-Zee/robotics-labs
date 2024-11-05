@@ -2,15 +2,13 @@ import rclpy
 from rclpy.action import ActionClient
 from rclpy.node import Node
 from actions.action import MessageTurtleCommands
-from action_msgs.msg import GoalStatus
 
 
 class TurtleActionClient(Node):
 
     def __init__(self):
         super().__init__('action_turtle_client')
-        self._action_client = ActionClient(
-            self, MessageTurtleCommands, 'turtle_command')
+        self._action_client = ActionClient(self, MessageTurtleCommands, 'turtle_command')
         self.goals = []
         self.current_goal_index = 0
 

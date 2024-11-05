@@ -4,7 +4,7 @@
   <name>actions</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="s.mendrul@g.nsu.ru">chukotskiy_shaman</maintainer>
+  <maintainer email="glebru.irk38@yandex.ru">zea</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
