@@ -2,6 +2,8 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
+from math import pi
+
 
 class TextToCmdVel(Node):
 
@@ -17,15 +19,15 @@ class TextToCmdVel(Node):
     def listener_callback(self, msg):
         command = msg.data
         twist = Twist()
-        
+
         if command == "turn_right":
-            twist.angular.z = -1.5  # negative value to turn right
+            twist.angular.z = -pi / 2  # negative value to turn right
         elif command == "turn_left":
-            twist.angular.z = 1.5  # positive value to turn left
+            twist.angular.z = pi / 2  # positive value to turn left
         elif command == "move_forward":
-            twist.linear.x = 1.0  # move forward
+            twist.linear.x = 2.0  # move forward
         elif command == "move_backward":
-            twist.linear.x = -1.0  # move backward
+            twist.linear.x = -2.0  # move backward
         else:
             self.get_logger().warning(f"Unknown command: {command}")
 

@@ -1,0 +1,8 @@
+colcon edit full_name_pkg FullNameSumService.srv
+
+
+ros2 run full_name service
+
+
+ros2 run full_name client
+
