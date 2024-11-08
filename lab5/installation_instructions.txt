@@ -1,0 +1,5 @@
+sudo apt update
+sudo apt install ros-humble-navigation2 ros-humble-nav2-bringup ros-humble-nav2-common
+
+
+sudo apt install ros-humble-urdf-tutorial
