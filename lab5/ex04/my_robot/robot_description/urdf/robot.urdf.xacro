@@ -5,18 +5,18 @@
     <!--xacro:include filename="$(find robot_description)/urdf/lidar.urdf.xacro" /-->
     <!--xacro:include filename="$(find robot_description)/urdf/depth.urdf.xacro" /-->
 
-    <xacro:property name="chassis_length" value="0.335"/>
-    <xacro:property name="chassis_width" value="0.265"/>
-    <xacro:property name="chassis_height" value="0.138"/>
+    <xacro:property name="chassis_length" value="0.3"/>
+    <xacro:property name="chassis_width" value="0.1"/>
+    <xacro:property name="chassis_height" value="0.05"/>
     <xacro:property name="wheel_radius" value="0.033"/>
     <xacro:property name="wheel_thickness" value="0.026"/>
     <xacro:property name="wheel_mass" value="0.05"/>
-    <xacro:property name="wheel_offset_x" value="0.226"/>
-    <xacro:property name="wheel_offset_y" value="0.1485"/>
+    <xacro:property name="wheel_offset_x" value="0.25"/>
+    <xacro:property name="wheel_offset_y" value="0.06"/>
     <xacro:property name="wheel_offset_z" value="0.01"/>
-    <xacro:property name="caster_wheel_radius" value="0.01"/>
+    <xacro:property name="caster_wheel_radius" value="0.025"/>
     <xacro:property name="caster_wheel_mass" value="0.01"/>
-    <xacro:property name="caster_wheel_offset_x" value="0.075"/>
+    <xacro:property name="caster_wheel_offset_x" value="0.0"/>
     <xacro:property name="caster_wheel_offset_z" value="${wheel_offset_z - wheel_radius + caster_wheel_radius}"/>
     <xacro:property name="mass" value="1.0"/>
 
@@ -40,6 +40,10 @@
         <color rgba="1 0 0 1"/>
     </material>
 
+    <material name="green">
+        <color rgba="0 1 0 1"/>
+    </material>
+
     <link name="base_link">
     </link>
 
@@ -59,7 +63,7 @@
     </joint>
 
     <link name='chassis'>
-    
+
     <inertial>
         <origin xyz="${chassis_length/2} 0 ${chassis_height/2}" rpy="0 0 0"/>
         <mass value="${mass}" />
@@ -72,7 +76,7 @@
         <geometry>
             <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
         </geometry>
-        <material name="orange"/>
+        <material name="green"/>
     </visual>
     <collision>
         <origin xyz="${chassis_length/2} 0 ${chassis_height/2}"/>
@@ -83,7 +87,7 @@
     </link>
 
     <gazebo reference="chassis">
-        <material>Gazebo/Orange</material>
+        <material>Gazebo/Green</material>
     </gazebo>
 
     <joint name="left_wheel_joint" type="continuous">
@@ -98,7 +102,7 @@
             <geometry>
                 <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
             </geometry>
-            <material name="blue"/>
+            <material name="black"/>
         </visual>
         <collision>
             <geometry>
@@ -115,7 +119,7 @@
     </link>
 
     <gazebo reference="left_wheel">
-        <material>Gazebo/Blue</material>
+        <material>Gazebo/Black</material>
     </gazebo>
 
     <joint name="right_wheel_joint" type="continuous">
@@ -130,7 +134,7 @@
             <geometry>
                 <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
             </geometry>
-            <material name="blue"/>
+            <material name="black"/>
         </visual>
         <collision>
             <geometry>
@@ -147,7 +151,7 @@
     </link>
 
     <gazebo reference="right_wheel">
-        <material>Gazebo/Blue</material>
+        <material>Gazebo/Black</material>
     </gazebo>
 
     <joint name="caster_wheel_joint" type="fixed">
