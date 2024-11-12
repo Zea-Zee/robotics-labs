@@ -1,3 +1,142 @@
 
-All 4 checks passed
+   NETWORK CONFIGURATION
+inet         : 127.0.0.1
+inet4        : ['127.0.0.1']
+netmask      : 255.0.0.0
+device       : lo
+flags        : 73<UP,RUNNING,LOOPBACK>
+mtu          : 65536
+inet         : 10.9.40.238
+inet4        : ['10.9.40.238']
+ether        : a8:93:4a:b8:85:c3
+netmask      : 255.255.248.0
+device       : wlp1s0
+flags        : 4163<MULTICAST,UP,BROADCAST,RUNNING>
+mtu          : 1500
+broadcast    : 10.9.47.255
+inet         : 10.0.85.1
+inet4        : ['10.0.85.1']
+netmask      : 255.255.255.255
+device       : outline-tun0
+flags        : 4305<UP,RUNNING,MULTICAST,PTP,NOARP>
+mtu          : 1500
+inet         : 192.168.49.1
+inet4        : ['192.168.49.1']
+ether        : 02:42:dc:df:81:e2
+netmask      : 255.255.255.0
+device       : br-52b44e1cfaff
+flags        : 4099<MULTICAST,UP,BROADCAST>
+mtu          : 1500
+broadcast    : 192.168.49.255
+inet         : 172.17.0.1
+inet4        : ['172.17.0.1']
+ether        : 02:42:57:1a:06:7d
+netmask      : 255.255.0.0
+device       : docker0
+flags        : 4099<MULTICAST,UP,BROADCAST>
+mtu          : 1500
+broadcast    : 172.17.255.255
+inet         : 172.18.0.1
+inet4        : ['172.18.0.1']
+ether        : 02:42:d8:a8:81:45
+netmask      : 255.255.0.0
+device       : br-d3e9587eb1e5
+flags        : 4099<MULTICAST,UP,BROADCAST>
+mtu          : 1500
+broadcast    : 172.18.255.255
+inet         : 172.19.0.1
+inet4        : ['172.19.0.1']
+ether        : 02:42:ed:74:52:c0
+netmask      : 255.255.0.0
+device       : br-3c0cdfa37f6a
+flags        : 4099<MULTICAST,UP,BROADCAST>
+mtu          : 1500
+broadcast    : 172.19.255.255
 
+   PLATFORM INFORMATION
+system           : Linux
+platform info    : Linux-6.8.0-48-generic-x86_64-with-glibc2.35
+release          : 6.8.0-48-generic
+processor        : x86_64
+
+   QOS COMPATIBILITY LIST
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : broadcaster1
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : broadcaster1
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : broadcaster2
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : broadcaster2
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : turtlesim
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : turtlesim
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : _ros2cli_72377
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : _ros2cli_72377
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : _ros2cli_daemon_0_22dfa8aec1df4625bee90f617f62e0e0
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : _ros2cli_daemon_0_22dfa8aec1df4625bee90f617f62e0e0
+subscriber node         : turtlesim
+compatibility status    : OK
+topic [type]            : /turtle1/pose [turtlesim/msg/Pose]
+publisher node          : turtlesim
+subscriber node         : broadcaster1
+compatibility status    : OK
+topic [type]            : /turtle1/pose [turtlesim/msg/Pose]
+publisher node          : turtlesim
+subscriber node         : _ros2cli_72377
+compatibility status    : OK
+
+   RMW MIDDLEWARE
+middleware name    : rmw_fastrtps_cpp
+
+   ROS 2 INFORMATION
+distribution name      : humble
+distribution type      : ros2
+distribution status    : active
+release platforms      : {'rhel': ['8'], 'ubuntu': ['jammy']}
+
+   TOPIC LIST
+topic               : /tf
+publisher count     : 2
+subscriber count    : 0
+topic               : /turtle1/cmd_vel
+publisher count     : 0
+subscriber count    : 1
+topic               : /turtle1/color_sensor
+publisher count     : 1
+subscriber count    : 0
+topic               : /turtle1/pose
+publisher count     : 1
+subscriber count    : 2
+topic               : /turtle1/rotate_absolute/_action/feedback
+publisher count     : 1
+subscriber count    : 0
+topic               : /turtle1/rotate_absolute/_action/status
+publisher count     : 1
+subscriber count    : 0
+topic               : /turtle2/pose
+publisher count     : 0
+subscriber count    : 1

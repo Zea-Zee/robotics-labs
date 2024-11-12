@@ -4,7 +4,6 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
 from actions.action import MessageTurtleCommands
-
 import math
 import threading
 
@@ -17,15 +16,18 @@ class TurtleActionServer(Node):
             self,
             MessageTurtleCommands,
             'turtle_command',
-            self.execute_callback)
+            self.execute_callback
+        )
         self.publisher_ = self.create_publisher(Twist, 'turtle1/cmd_vel', 10)
         self.subscription = self.create_subscription(
             Pose,
             'turtle1/pose',
             self.pose_callback,
-            10)
+            10
+        )
         self.current_pose = Pose()
         self.start_pose = Pose()
+        self.previous_distance = 0.0  # Добавим переменную для отслеживания предыдущего расстояния
 
     def pose_callback(self, msg):
         self.current_pose = msg
@@ -36,17 +38,15 @@ class TurtleActionServer(Node):
         command = goal_handle.request.command
         s = goal_handle.request.s
         angle = goal_handle.request.angle
-        # print(goal_handle.request)
 
         feedback_msg = MessageTurtleCommands.Feedback()
         feedback_msg.odom = 0.0
-
         twist = Twist()
         self.start_pose = self.current_pose
+        self.previous_distance = 0.0  # Обнуляем при начале выполнения
 
         if command == 'forward':
             twist.linear.x = float(s)
-            print('in forward')
             while self.calculate_distance() < s:
                 if goal_handle.is_cancel_requested:
                     goal_handle.canceled()
@@ -55,25 +55,25 @@ class TurtleActionServer(Node):
 
                 self.publisher_.publish(twist)
                 rclpy.spin_once(self, timeout_sec=0.1)
-                feedback_msg.odom = self.calculate_distance()
+
+                feedback_msg.odom = self.calculate_distance() - self.previous_distance
+                self.previous_distance = self.calculate_distance()  # Обновляем предыдущее расстояние
+
                 goal_handle.publish_feedback(feedback_msg)
 
         elif command == 'turn':
-
-            while abs(abs(self.current_pose.theta - self.start_pose.theta)-math.radians(abs(angle))) > 0.005 and abs(abs(self.current_pose.theta) - self.start_pose.theta)-math.radians(abs(angle)) < math.radians(abs(angle*2)):
-                twist.angular.z = (
-                    abs((self.current_pose.theta) - (self.start_pose.theta)) - math.radians(angle))/2
-                print(self.current_pose.theta,
-                      self.start_pose.theta, math.radians(angle))
+            target_angle = math.radians(angle)
+            while abs(self.calculate_angle_difference(self.current_pose.theta, self.start_pose.theta)) < target_angle:
                 if goal_handle.is_cancel_requested:
                     goal_handle.canceled()
                     self.get_logger().info('Goal canceled')
                     return MessageTurtleCommands.Result()
 
+                twist.angular.z = (target_angle - self.calculate_angle_difference(self.current_pose.theta, self.start_pose.theta)) / 2
                 self.publisher_.publish(twist)
                 rclpy.spin_once(self, timeout_sec=0.001)
-                feedback_msg.odom = abs(
-                    self.current_pose.theta - self.start_pose.theta)
+
+                feedback_msg.odom = abs(self.calculate_angle_difference(self.current_pose.theta, self.start_pose.theta))
                 goal_handle.publish_feedback(feedback_msg)
 
         goal_handle.succeed()
@@ -82,7 +82,12 @@ class TurtleActionServer(Node):
         return result
 
     def calculate_distance(self):
-        return math.sqrt((self.current_pose.x - self.start_pose.x)**2 + (self.current_pose.y - self.start_pose.y)**2)
+        return math.sqrt((self.current_pose.x - self.start_pose.x) ** 2 + (self.current_pose.y - self.start_pose.y) ** 2)
+
+    def calculate_angle_difference(self, current_angle, start_angle):
+        # Нормализуем угол в диапазон от -π до π
+        angle_diff = current_angle - start_angle
+        return math.fmod(angle_diff + math.pi, 2 * math.pi) - math.pi
 
 
 def main(args=None):
