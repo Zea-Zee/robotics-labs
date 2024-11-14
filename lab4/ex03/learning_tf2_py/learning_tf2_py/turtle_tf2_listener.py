@@ -37,7 +37,7 @@ class FrameListener(Node):
             'target_frame', 'turtle1').get_parameter_value().string_value
 
         #!!!!!!!!!!!!!!!!!!!!!!!
-        self.declare_parameter('delay', 1)
+        self.declare_parameter('delay')
         self.delay = self.get_parameter('delay').get_parameter_value().integer_value
 
         self.tf_buffer = Buffer()
